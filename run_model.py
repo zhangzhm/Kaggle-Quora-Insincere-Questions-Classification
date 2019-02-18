@@ -35,7 +35,10 @@ from sklearn.metrics import f1_score
 from torch.optim.optimizer import Optimizer
 from unidecode import unidecode
 
-from data.load import load_glove,load_fasttext,load_para,build_cvocab,add_features
+from model import Embed_Layer,GRU_Layer,Caps_Layer,Capsule_Main,Attention,NeuralNet
+from data.load import load_glove,load_fasttext,load_para
+from data.preprocess import build_cvocab,add_features,MyDataset
+from Cyclic CLR import CyclicLR
 
 
 
@@ -160,6 +163,11 @@ def train():
 
 
 if __name__ == '__main__':
+    x_train, x_test, y_train, features, test_features, word_index = load_and_prec() 
+    glove_embeddings = load_glove(word_index)
+    paragram_embeddings = load_para(word_index)
+
+    embedding_matrix = np.mean([glove_embeddings, paragram_embeddings], axis=0)
     train()
     
 
