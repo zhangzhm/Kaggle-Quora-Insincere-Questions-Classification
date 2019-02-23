@@ -10,7 +10,7 @@
 
 大致结构如下：
 
-![images/cnn_architecture](images/cnn_architecture.png)
+![images/_architecture](images/cnn_architecture.png)
 首先将序列通过一个embedding层，得到整个序列的词向量表示，然后将它们通过一个1层的LSTM，得到隐状态序列，再让隐状态序列通过一个一层的GRU，得到另一个隐状态序列，然后对这两个隐状态序列做attention操作，得到两个上下文向量，相较于词向量序列，这两个上下文向量可以看作是原序列更高层次的表示。同时对GRU得到的隐状态序列做max-pooling操作，和动态路由操作
 运行 `python run_cnn.py train`，可以开始训练。
 ## 训练
